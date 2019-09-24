@@ -81,13 +81,69 @@ q_component = 0
 # Loop to calculate optimised number of dimension using q_component
 # Once the optimum dimension is found, Use N as a starting and N+1 as the ending value in for loop
 
+for n_component in range(16, 17):
 
+    q_component += 1
+    print('Num of Component :: ', n_component)
 
+    # LE - Locally Linear Embedding
 
+    if (DR == 'LE'):
+        clf = SpectralEmbedding(n_components=n_component, affinity='rbf', n_neighbors=300)
+        X_le = clf.fit_transform(k_temp)
+        x = X_le
+        # print(x.shape)
 
+    # HLLE - Hessian-based Locally Linear Embedding
 
+    if (DR == 'HLLE'):
+        hlle = manifold.LocallyLinearEmbedding(n_neighbors=300, n_components=n_component, eigen_solver='dense', method='hessian')
+        X_hlle = hlle.fit_transform(k_temp)
+        x = X_hlle
+        # print(x.shape)
 
+    # LTSA - Local Tangent Space Alignment
 
+    if (DR == 'LTSA'):
+        clf = manifold.LocallyLinearEmbedding(n_neighbors=300, n_components=n_component, eigen_solver='dense', method='ltsa')
+        X_ltsa = clf.fit_transform(k_temp)
+        x = X_ltsa
+        # print(x.shape)
+
+    # Train - Test Split
+    # Here data is split in 80% training and 20% testing set
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.2)
+
+    # KNN - K NEAREST NEIGHBOUR
+
+    num_validations = 10
+    if (Classification_method == 'KNN'):
+        clf = KNeighborsClassifier(n_neighbors=3, algorithm='auto', leaf_size=3)
+        nbc = clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+
+    # Decision Tree
+
+    if (Classification_method == 'DT'):
+        clf = DecisionTreeClassifier(criterion='entropy', random_state=1000)
+        dt = clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)  # X_validation)
+
+    # SVM - Support Vector Machine
+
+    if (Classification_method == 'SVM'):
+        clf = svm.SVC(kernel='rbf', decision_function_shape='ovr', gamma='scale', C=100)
+        svm = clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)  # X_validation)
+
+    # To us K-fold Cross-validation
+    # Here K=10
+
+    accuracy = cross_val_score(clf, X_train, y_train, scoring = 'accuracy', cv = num_validations)
+    main_accuracy.append(statistics.mean(accuracy))
+
+# Print the overall accuracy
+print(main_accuracy)
 
 # To prepare Confusion Matrix
 conf_mat_print = metrics.confusion_matrix(y_test, y_pred)
