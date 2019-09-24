@@ -25,7 +25,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.utils import shuffle
 
 # To choose DR Method, Uncomment the selection
- # Here parameters are only optimized for LTSA method with KNN classifier
+# Here parameters are only optimized for LTSA method with KNN classifier
 
 #DR = 'LE'
 #DR = 'HLLE'
