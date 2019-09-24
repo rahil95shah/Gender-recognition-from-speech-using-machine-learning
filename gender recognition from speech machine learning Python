@@ -116,7 +116,6 @@ for n_component in range(16, 17):
 
     # KNN - K NEAREST NEIGHBOUR
 
-    num_validations = 10
     if (Classification_method == 'KNN'):
         clf = KNeighborsClassifier(n_neighbors=3, algorithm='auto', leaf_size=3)
         nbc = clf.fit(X_train, y_train)
@@ -138,6 +137,7 @@ for n_component in range(16, 17):
 
     # To us K-fold Cross-validation
     # Here K=10
+    num_validations = 10
 
     accuracy = cross_val_score(clf, X_train, y_train, scoring = 'accuracy', cv = num_validations)
     main_accuracy.append(statistics.mean(accuracy))
