@@ -1,6 +1,6 @@
 # Gender-recognition-from-voice-using-machine-learning
 
-Voice Gender Recognition Using Deep Learning
+Voice Gender Recognition Using Machine Learning
 
 Voice dataset is from kaggle: 
 You can find it here: https://www.kaggle.com/primaryobjects/voicegender
