@@ -1,13 +1,31 @@
-# Gender-recognition-from-voice-using-machine-learning
+# Gender Recognition From Voice Using Machine Learning
 
-Voice Gender Recognition Using Machine Learning
+ Used Scikit-Learn library with LTSA method for dimension reduction and K-NN classifier algorithm <br >
+ Achieved maximum accuracy of 97.89%
 
-Voice dataset is from kaggle: 
-You can find it here: https://www.kaggle.com/primaryobjects/voicegender
+# Tech Stack
+ Python<br>
+ Jypter Notebook or Google Colab
 
-This dataset contained 3168 rows and 21 columns
+# Output
 
-In this dataset 20 columns represent the acoustic properties of Voice.
+### A. Blocks
+
+Detailed description of running code and output in terms of blocks on Google Colab platform [GenderRecog.ipynb](https://github.com/Devanshi512/Gender-Recognition-From-Speech/blob/master/GenderRecog.ipynb).
+
+### B. final_res file (i.e. result file of confusion matrix) 
+
+Showing 320 Males and 310 Females are identified correctly by the machine.<br >
+![Alt text](Image/Final_Res.jpeg?raw=true "Final_Res file")
+
+
+### C. Code of achieved accuracy
+Showing 97.75% accuracy <br >
+![Alt text](Image/Accuracy_Result.JPG?raw=true "Accuracy Result")
+
+# About Dataset
+
+Voice dataset is from kaggle(https://www.kaggle.com/primaryobjects/voicegender), contained 3168 X 21 size. In this dataset, 20 columns represent the acoustic properties of Voice.
 
 •	meanfreq: mean frequency (in kHz)  
 •	sd: standard deviation of frequency  
@@ -32,4 +50,3 @@ In this dataset 20 columns represent the acoustic properties of Voice.
 •	modindx: modulation index. Calculated as the accumulated absolute difference between adjacent measurements of fundamental frequencies divided by the frequency range  
 
 You can find link here: http://www.primaryobjects.com/2016/06/22/identifying-the-gender-of-a-voice-using-machine-learning/
-
